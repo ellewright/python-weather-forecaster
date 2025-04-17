@@ -9,7 +9,7 @@ load_dotenv()
 
 def get_weather_data(lat, lon):
     api_key = os.getenv("API_KEY")
-    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}"
+    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=imperial"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -30,6 +30,11 @@ def main():
     requested_lat, requested_lon = convert_to_coords(requested_city)
     requested_data = get_weather_data(requested_lat, requested_lon)
 
-    print(requested_data)
+    requested_name = requested_data["name"]
+    requested_temp = requested_data["main"]["temp"]
+    requested_weather_description = requested_data["weather"][0]["main"]
+
+    print(f"{requested_name} is currently experiencing {requested_weather_description}.")
+    print(f"It is {requested_temp} degrees Fahrenheit.")
 
 main()
