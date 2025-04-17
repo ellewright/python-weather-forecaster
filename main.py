@@ -24,3 +24,12 @@ def convert_to_coords(city_name):
         city_data = response.json()
         lat, lon = city_data[0]["lat"], city_data[0]["lon"]
         return (lat, lon)
+
+def main():
+    requested_city = input("Type in a city to receive its weather data: ").lower()
+    requested_lat, requested_lon = convert_to_coords(requested_city)
+    requested_data = get_weather_data(requested_lat, requested_lon)
+
+    print(requested_data)
+
+main()
