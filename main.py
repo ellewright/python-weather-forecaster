@@ -25,16 +25,21 @@ def convert_to_coords(city_name):
         lat, lon = city_data[0]["lat"], city_data[0]["lon"]
         return (lat, lon)
 
+# todo: make method for converting meteorological degrees into cardinal directions
+
 def main():
     requested_city = input("Type in a city to receive its weather data: ").lower()
     requested_lat, requested_lon = convert_to_coords(requested_city)
     requested_data = get_weather_data(requested_lat, requested_lon)
 
     requested_name = requested_data["name"]
-    requested_temp = requested_data["main"]["temp"]
+    requested_temp = round(requested_data["main"]["temp"])
+    requested_feels_like = round(requested_data["main"]["feels_like"])
+    requested_wind_speed = requested_data["wind"]["speed"]
     requested_weather_description = requested_data["weather"][0]["main"]
 
     print(f"{requested_name} is currently experiencing {requested_weather_description}.")
-    print(f"It is {requested_temp} degrees Fahrenheit.")
+    print(f"It is {requested_temp} degrees Fahrenheit. It feels like {requested_feels_like} degrees.")
+    print(f"Winds are blowing {requested_wind_speed} miles per hour.")
 
 main()
