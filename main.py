@@ -46,12 +46,13 @@ def main():
     city = requested_data["name"]
     temp = round(requested_data["main"]["temp"])
     feels_like = round(requested_data["main"]["feels_like"])
+    humidity = requested_data["main"]["humidity"]
     wind_speed = requested_data["wind"]["speed"]
     wind_direction = convert_to_cardinal(requested_data["wind"]["deg"])
     weather_description = requested_data["weather"][0]["main"]
 
     print(f"{city} is currently experiencing {weather_description}.")
-    print(f"It is {temp} degrees Fahrenheit. It feels like {feels_like} degrees.")
+    print(f"It is {temp} degrees Fahrenheit. It feels like {feels_like} degrees. Humidity is at {humidity}%.")
     print(f"Winds are blowing {wind_speed} miles per hour in the {wind_direction} direction.")
 
 main()
