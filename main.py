@@ -32,14 +32,14 @@ def main():
     requested_lat, requested_lon = convert_to_coords(requested_city)
     requested_data = get_weather_data(requested_lat, requested_lon)
 
-    requested_name = requested_data["name"]
-    requested_temp = round(requested_data["main"]["temp"])
-    requested_feels_like = round(requested_data["main"]["feels_like"])
-    requested_wind_speed = requested_data["wind"]["speed"]
-    requested_weather_description = requested_data["weather"][0]["main"]
+    city = requested_data["name"]
+    temp = round(requested_data["main"]["temp"])
+    feels_like = round(requested_data["main"]["feels_like"])
+    wind_speed = requested_data["wind"]["speed"]
+    weather_description = requested_data["weather"][0]["main"]
 
-    print(f"{requested_name} is currently experiencing {requested_weather_description}.")
-    print(f"It is {requested_temp} degrees Fahrenheit. It feels like {requested_feels_like} degrees.")
-    print(f"Winds are blowing {requested_wind_speed} miles per hour.")
+    print(f"{city} is currently experiencing {weather_description}.")
+    print(f"It is {temp} degrees Fahrenheit. It feels like {feels_like} degrees.")
+    print(f"Winds are blowing {wind_speed} miles per hour.")
 
 main()
