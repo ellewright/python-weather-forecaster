@@ -25,7 +25,18 @@ def convert_to_coords(city_name):
         lat, lon = city_data[0]["lat"], city_data[0]["lon"]
         return (lat, lon)
 
-# todo: make method for converting meteorological degrees into cardinal directions
+def convert_to_cardinal(angle):
+    return (
+        "North" if 0 <= angle < 22.5 else
+        "Northeast" if 22.5 <= angle < 67.5 else
+        "East" if 67.5 <= angle < 112.5 else
+        "Southeast" if 112.5 <= angle < 157.5 else
+        "South" if 157.5 <= angle < 202.5 else
+        "Southwest" if 202.5 <= angle < 247.5 else
+        "West" if 247.5 <= angle < 292.5 else
+        "Northwest" if 292.5 <= angle < 337.5 else
+        "North"
+    )
 
 def main():
     requested_city = input("Type in a city to receive its weather data: ").lower()
@@ -36,10 +47,11 @@ def main():
     temp = round(requested_data["main"]["temp"])
     feels_like = round(requested_data["main"]["feels_like"])
     wind_speed = requested_data["wind"]["speed"]
+    wind_direction = convert_to_cardinal(requested_data["wind"]["deg"])
     weather_description = requested_data["weather"][0]["main"]
 
     print(f"{city} is currently experiencing {weather_description}.")
     print(f"It is {temp} degrees Fahrenheit. It feels like {feels_like} degrees.")
-    print(f"Winds are blowing {wind_speed} miles per hour.")
+    print(f"Winds are blowing {wind_speed} miles per hour in the {wind_direction} direction.")
 
 main()
